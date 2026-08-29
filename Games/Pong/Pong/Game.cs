@@ -63,10 +63,7 @@ namespace Pong
         {
             base.OnUpdateFrame(args);
 
-            if(KeyboardState.IsKeyDown(Keys.Escape))
-            {
-                Close();
-            }
+            Input.Update(KeyboardState);
         }
 
         protected override void OnRenderFrame(FrameEventArgs args)
