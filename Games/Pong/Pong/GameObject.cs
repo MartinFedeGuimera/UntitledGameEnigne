@@ -3,7 +3,7 @@
     internal class GameObject
     {
         public string Name;
-        private Transform Transform;
+        public Transform Transform;
 
         private List<Component> components = new List<Component>();
 
@@ -16,7 +16,7 @@
         public T AddComponent<T>() where T : Component, new()
         {
             T component = new T();
-            component.GameObect = this;
+            component.GameObject = this;
 
             components.Add(component);
 
