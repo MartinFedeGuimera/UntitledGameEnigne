@@ -28,6 +28,11 @@ namespace Pong
 
         Shader shader;
 
+        Scene scene = new Scene();
+
+        GameObject leftPaddle = new GameObject("LeftPaddle");
+        GameObject rightPaddle = new GameObject("RightPaddle");
+
         public Game(int width, int height, string title) : base(GameWindowSettings.Default, new NativeWindowSettings() 
             { 
                 ClientSize = (width, height),
@@ -57,6 +62,8 @@ namespace Pong
             GL.BufferData(BufferTarget.ArrayBuffer, vertices.Length * sizeof(float), vertices, BufferUsageHint.StaticDraw);
 
             shader = new Shader("Resources/Shaders/shader.vert", "Resources/Shaders/shader.frag");
+
+            scene.Start();
         }
 
         protected override void OnUpdateFrame(FrameEventArgs args)
@@ -64,6 +71,7 @@ namespace Pong
             base.OnUpdateFrame(args);
 
             Input.Update(KeyboardState);
+            scene.Update((float)args.Time);
         }
 
         protected override void OnRenderFrame(FrameEventArgs args)
