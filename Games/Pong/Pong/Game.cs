@@ -63,6 +63,9 @@ namespace Pong
 
             shader = new Shader("Resources/Shaders/shader.vert", "Resources/Shaders/shader.frag");
 
+            scene.AddGameObject(leftPaddle);
+            scene.AddGameObject(rightPaddle);
+
             scene.Start();
         }
 
