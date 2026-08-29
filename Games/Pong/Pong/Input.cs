@@ -13,8 +13,15 @@ namespace Pong
             currentState = keyboardState;
         }
 
-        public static bool IsKeyDown(Keys key) => currentState.IsKeyDown(key);
-        public static bool IsKeyPressed(Keys key) => currentState.IsKeyDown(key) && !previousState.IsKeyDown(key);
-        public static bool IsKeyReleased(Keys key) => !currentState.IsKeyDown(key) && previousState.IsKeyDown(key);
+        public static bool IsKeyDown(Keys key) =>
+            currentState.IsKeyDown(key);
+
+        public static bool IsKeyPressed(Keys key) =>
+            currentState.IsKeyDown(key) &&
+            !previousState.IsKeyDown(key);
+
+        public static bool IsKeyReleased(Keys key) =>
+            !currentState.IsKeyDown(key) &&
+            previousState.IsKeyDown(key);
     }
 }
