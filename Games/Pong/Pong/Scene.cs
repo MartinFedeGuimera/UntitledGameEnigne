@@ -8,6 +8,27 @@ namespace Pong
 {
     internal class Scene
     {
-        
+        private List<GameObject> gameObjects = new List<GameObject>();
+
+        public void AddGameObject(GameObject gameObject)
+        {
+            gameObjects.Add(gameObject);
+        }
+
+        public void Start()
+        {
+            foreach(var gameObject in gameObjects)
+            {
+                gameObject.Start();
+            }
+        }
+
+        public void Update(float deltaTime)
+        {
+            foreach (GameObject gameObject in gameObjects)
+            {
+                gameObject.Update(deltaTime);
+            }
+        }
     }
 }
