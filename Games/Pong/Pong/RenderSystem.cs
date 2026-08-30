@@ -1,4 +1,5 @@
 ﻿using OpenTK.Graphics.OpenGL4;
+using System.Drawing;
 
 namespace Pong
 {
@@ -21,7 +22,7 @@ namespace Pong
             shader = new Shader("Resources/Shaders/shader.vert", "Resources/Shaders/shader.frag");
         }
 
-        public void DrawSquare()
+        public void DrawSquare(Color color)
         {
             float[] vertexs = {
                  0.5f,  0.5f, 0.0f,  // top right
@@ -43,7 +44,11 @@ namespace Pong
             GL.BufferData(BufferTarget.ElementArrayBuffer, indexes.Length * sizeof(uint), indexes, BufferUsageHint.StaticDraw);
 
             GL.BufferData(BufferTarget.ArrayBuffer, vertexs.Length * sizeof(float), vertexs, BufferUsageHint.StaticDraw);
+
             shader.Use();
+
+            int colorLocation = GL.GetUniformLocation(shader.Handle, "Color");
+            GL.Uniform4(colorLocation, color);
 
             GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 3 * sizeof(float), 0);
             GL.EnableVertexAttribArray(0);

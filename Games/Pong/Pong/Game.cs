@@ -2,7 +2,6 @@
 using OpenTK.Windowing.Common;
 using OpenTK.Windowing.Desktop;
 using System.Drawing;
-using System.Resources;
 
 namespace Pong
 {
@@ -39,7 +38,7 @@ namespace Pong
 
             GL.Clear(ClearBufferMask.ColorBufferBit);
 
-            render.DrawSquare();
+            render.DrawSquare(Color.White);
 
             SwapBuffers();
         }
