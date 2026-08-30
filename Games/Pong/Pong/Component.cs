@@ -8,5 +8,7 @@
         public virtual void Start() { }
 
         public virtual void Update(float deltaTime) { }
+
+        public virtual void Render(RenderSystem renderSystem) { }
     }
 }

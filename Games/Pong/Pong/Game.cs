@@ -9,6 +9,11 @@ namespace Pong
     public class Game : GameWindow
     {
         RenderSystem render = new RenderSystem();
+        Scene scene = new Scene();
+
+        GameObject leftPaddle = new GameObject("LeftPaddle");
+        GameObject rightPaddle = new GameObject("RightPaddle");
+        GameObject ball = new GameObject("Ball");
 
         public Game(int width, int height, string title) : base(GameWindowSettings.Default, new NativeWindowSettings() 
             { 
@@ -25,6 +30,26 @@ namespace Pong
 
             render.Initialize();
             render.SetViewportSize(Size.X, Size.Y);
+
+            scene.AddGameObject(leftPaddle);
+
+            leftPaddle.AddComponent<Renderer>().shape = Shape.Square;
+            leftPaddle.Transform.Position = new Vector2(100, 300);
+            leftPaddle.Transform.Scale = new Vector2(50, 100);
+
+            scene.AddGameObject(rightPaddle);
+
+            rightPaddle.AddComponent<Renderer>().shape = Shape.Square;
+            rightPaddle.Transform.Position = new Vector2(700, 300);
+            rightPaddle.Transform.Scale = new Vector2(50, 100);
+
+            scene.AddGameObject(ball);
+
+            ball.AddComponent<Renderer>().shape = Shape.Circle;
+            ball.Transform.Position = new Vector2(400, 300);
+            ball.Transform.Scale = new Vector2(20, 20);
+
+            scene.Start();
         }
 
         protected override void OnUpdateFrame(FrameEventArgs args)
@@ -32,6 +57,7 @@ namespace Pong
             base.OnUpdateFrame(args);
 
             Input.Update(KeyboardState);
+            scene.Update((float)args.Time);
         }
 
         protected override void OnRenderFrame(FrameEventArgs args)
@@ -40,7 +66,7 @@ namespace Pong
 
             GL.Clear(ClearBufferMask.ColorBufferBit);
 
-            render.DrawCircle(new Vector2(400, 300), new Vector2(100, 100) ,Color.Yellow);
+            scene.Render(render);
 
             SwapBuffers();
         }
