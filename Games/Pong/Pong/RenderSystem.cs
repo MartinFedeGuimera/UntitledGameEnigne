@@ -1,5 +1,9 @@
 ﻿using OpenTK.Graphics.OpenGL4;
 using System.Drawing;
+using OpenTK.Mathematics;
+using OpenTK.Windowing.Common;
+using OpenTK.Windowing.Desktop;
+using OpenTK.Windowing.GraphicsLibraryFramework;
 
 namespace Pong
 {
@@ -12,6 +16,11 @@ namespace Pong
         private int ElementBufferObject;
 
         Shader shader;
+        int modelLocation;
+        int projectionLocation;
+        int colorLocation;
+
+        Matrix4 projection;
 
         public void Initialize()
         {
@@ -20,10 +29,16 @@ namespace Pong
             ElementBufferObject = GL.GenBuffer();
 
             shader = new Shader("Resources/Shaders/shader.vert", "Resources/Shaders/shader.frag");
+
+            modelLocation = GL.GetUniformLocation(shader.Handle, "ModelMatrix");
+            projectionLocation = GL.GetUniformLocation(shader.Handle, "ProjectionMatrix");
+            colorLocation = GL.GetUniformLocation(shader.Handle, "Color");
         }
 
-        public void DrawSquare(Color color)
+        public void DrawSquare(Vector2 position, Vector2 scale, Color color)
         {
+            Matrix4 model = Matrix4.CreateScale(scale.X, scale.Y, 1) * Matrix4.CreateTranslation(position.X, position.Y, 0);
+
             float[] vertexs = {
                  0.5f,  0.5f, 0.0f,  // top right
                  0.5f, -0.5f, 0.0f,  // bottom right
@@ -47,7 +62,9 @@ namespace Pong
 
             shader.Use();
 
-            int colorLocation = GL.GetUniformLocation(shader.Handle, "Color");
+            GL.UniformMatrix4(modelLocation, false, ref model);
+            GL.UniformMatrix4(projectionLocation, false, ref projection);
+
             GL.Uniform4(colorLocation, color);
 
             GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 3 * sizeof(float), 0);
@@ -64,6 +81,11 @@ namespace Pong
             GL.DeleteBuffer(ElementBufferObject);
 
             shader.Dispose();
+        }
+
+        public void SetViewportSize(int width, int height)
+        {
+            projection = Matrix4.CreateOrthographicOffCenter(0, width, height, 0, -1, 1);
         }
     }
 }

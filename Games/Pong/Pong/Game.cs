@@ -1,4 +1,5 @@
 ﻿using OpenTK.Graphics.OpenGL4;
+using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
 using OpenTK.Windowing.Desktop;
 using System.Drawing;
@@ -20,9 +21,10 @@ namespace Pong
         {
             base.OnLoad();
 
-            GL.ClearColor(Color.Red);
+            GL.ClearColor(Color.Blue);
 
             render.Initialize();
+            render.SetViewportSize(Size.X, Size.Y);
         }
 
         protected override void OnUpdateFrame(FrameEventArgs args)
@@ -38,7 +40,7 @@ namespace Pong
 
             GL.Clear(ClearBufferMask.ColorBufferBit);
 
-            render.DrawSquare(Color.White);
+            render.DrawSquare(new Vector2(400, 300), new Vector2(800, 300) ,Color.Yellow);
 
             SwapBuffers();
         }
@@ -55,6 +57,8 @@ namespace Pong
             base.OnFramebufferResize(e);
 
             GL.Viewport(0, 0, e.Width, e.Height);
+
+            render.SetViewportSize(e.Width, e.Height);
         }
     }
 }
