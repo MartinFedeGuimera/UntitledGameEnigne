@@ -40,7 +40,7 @@ namespace Pong
 
             GL.Clear(ClearBufferMask.ColorBufferBit);
 
-            render.DrawSquare(new Vector2(400, 300), new Vector2(800, 300) ,Color.Yellow);
+            render.DrawCircle(new Vector2(400, 300), new Vector2(100, 100) ,Color.Yellow);
 
             SwapBuffers();
         }

@@ -6,8 +6,6 @@ namespace Pong
 {
     internal class RenderSystem : IDisposable
     {
-        Mesh mesh;
-
         Shader shader;
         int modelLocation;
         int projectionLocation;
@@ -16,6 +14,7 @@ namespace Pong
         Matrix4 projection;
 
         Mesh square = PrimitiveMesh.CreateSquare();
+        Mesh circle = PrimitiveMesh.CreateCircle(32);
 
         public void Initialize()
         {
@@ -26,6 +25,7 @@ namespace Pong
             colorLocation = GL.GetUniformLocation(shader.Handle, "Color");
 
             square.Initialize();
+            circle.Initialize();
         }
 
         public void DrawSquare(Vector2 position, Vector2 scale, Color color)
@@ -42,10 +42,26 @@ namespace Pong
             square.Draw();
         }
 
+        public void DrawCircle(Vector2 position, Vector2 scale, Color color)
+        {
+            Matrix4 model = Matrix4.CreateScale(scale.X, scale.Y, 1) * Matrix4.CreateTranslation(position.X, position.Y, 0);
+
+            shader.Use();
+
+            GL.UniformMatrix4(modelLocation, false, ref model);
+            GL.UniformMatrix4(projectionLocation, false, ref projection);
+
+            GL.Uniform4(colorLocation, color);
+
+            circle.Draw();
+        }
+
         public void Dispose()
         {
             shader.Dispose();
+
             square.Dispose();
+            circle.Dispose();
         }
 
         public void SetViewportSize(int width, int height)
