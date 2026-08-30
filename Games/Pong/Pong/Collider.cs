@@ -29,6 +29,9 @@ namespace Pong
                     };
                     break;
             }
+
+            GetSides();
+            GetNormals();
         }
 
         public Vector2[] GetVertices() => vertices;
@@ -58,6 +61,18 @@ namespace Pong
             }
 
             return sides;
+        }
+
+        public Vector2[] GetNormals()
+        {
+            normals = new Vector2[sides.Length];
+
+            for(int i = 0; i < normals.Length; i++)
+            {
+                normals[i] = new Vector2(-sides[i].Y, sides[i].X);
+            }
+
+            return normals;
         }
     }
 }
