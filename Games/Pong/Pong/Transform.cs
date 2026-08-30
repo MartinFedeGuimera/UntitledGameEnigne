@@ -4,12 +4,12 @@ namespace Pong
 {
     internal class Transform
     {
-        private Vector3 position;
-        private Vector3 rotation;
-        private Vector3 scale;
+        private Vector2 position;
+        private Vector2 rotation;
+        private Vector2 scale;
 
-        public Vector3 Position { get { return position; } set { position = value; } }
-        public Vector3 Rotation { get { return rotation; } set { rotation = value; } }
-        public Vector3 Scale { get { return scale; } set { scale = value; } }
+        public Vector2 Position { get { return position; } set { position = value; } }
+        public Vector2 Rotation { get { return rotation; } set { rotation = value; } }
+        public Vector2 Scale { get { return scale; } set { scale = value; } }
     }
 }
