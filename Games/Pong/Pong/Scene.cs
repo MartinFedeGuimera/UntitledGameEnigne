@@ -30,5 +30,13 @@ namespace Pong
                 gameObject.Update(deltaTime);
             }
         }
+
+        public void Render(RenderSystem renderSystem)
+        {
+            foreach(GameObject gameObject in gameObjects)
+            {
+                gameObject.Render(renderSystem);
+            }
+        }
     }
 }

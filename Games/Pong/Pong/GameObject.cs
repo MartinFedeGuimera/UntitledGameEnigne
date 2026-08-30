@@ -51,5 +51,13 @@
                 component.Update(deltaTime);
             }
         }
+
+        public void Render(RenderSystem renderSystem)
+        {
+            foreach(Component component in components)
+            {
+                component.Render(renderSystem);
+            }
+        }
     }
 }
