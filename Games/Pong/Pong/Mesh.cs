@@ -10,14 +10,14 @@ namespace Pong
 
         private int ElementBufferObject { get; set; }
 
-        private float[] vertexs;
+        private float[] vertices;
 
-        private uint[] indexes;
+        private uint[] indices;
 
-        public Mesh(float[] vertexs, uint[] indexes)
+        public Mesh(float[] vertices, uint[] indices)
         {
-            this.vertexs = vertexs;
-            this.indexes = indexes;
+            this.vertices = vertices;
+            this.indices = indices;
         }
 
         public void Initialize()
@@ -31,9 +31,9 @@ namespace Pong
             GL.BindBuffer(BufferTarget.ArrayBuffer, VertexBufferObject);
 
             GL.BindBuffer(BufferTarget.ElementArrayBuffer, ElementBufferObject);
-            GL.BufferData(BufferTarget.ElementArrayBuffer, indexes.Length * sizeof(uint), indexes, BufferUsageHint.StaticDraw);
+            GL.BufferData(BufferTarget.ElementArrayBuffer, indices.Length * sizeof(uint), indices, BufferUsageHint.StaticDraw);
 
-            GL.BufferData(BufferTarget.ArrayBuffer, vertexs.Length * sizeof(float), vertexs, BufferUsageHint.StaticDraw);
+            GL.BufferData(BufferTarget.ArrayBuffer, vertices.Length * sizeof(float), vertices, BufferUsageHint.StaticDraw);
 
             GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 3 * sizeof(float), 0);
             GL.EnableVertexAttribArray(0);
@@ -42,7 +42,7 @@ namespace Pong
         public void Draw()
         {
             GL.BindVertexArray(VertexArrayObject);
-            GL.DrawElements(PrimitiveType.Triangles, indexes.Length, DrawElementsType.UnsignedInt, 0);
+            GL.DrawElements(PrimitiveType.Triangles, indices.Length, DrawElementsType.UnsignedInt, 0);
         }
 
         public void Dispose()

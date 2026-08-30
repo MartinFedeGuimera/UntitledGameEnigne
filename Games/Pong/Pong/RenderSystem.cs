@@ -15,6 +15,8 @@ namespace Pong
 
         Matrix4 projection;
 
+        Mesh square = PrimitiveMesh.CreateSquare();
+
         public void Initialize()
         {
             shader = new Shader("Resources/Shaders/shader.vert", "Resources/Shaders/shader.frag");
@@ -22,6 +24,8 @@ namespace Pong
             modelLocation = GL.GetUniformLocation(shader.Handle, "ModelMatrix");
             projectionLocation = GL.GetUniformLocation(shader.Handle, "ProjectionMatrix");
             colorLocation = GL.GetUniformLocation(shader.Handle, "Color");
+
+            square.Initialize();
         }
 
         public void DrawSquare(Vector2 position, Vector2 scale, Color color)
@@ -34,11 +38,14 @@ namespace Pong
             GL.UniformMatrix4(projectionLocation, false, ref projection);
 
             GL.Uniform4(colorLocation, color);
+
+            square.Draw();
         }
 
         public void Dispose()
         {
             shader.Dispose();
+            square.Dispose();
         }
 
         public void SetViewportSize(int width, int height)
