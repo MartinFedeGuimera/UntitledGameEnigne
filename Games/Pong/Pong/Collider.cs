@@ -1,52 +1,63 @@
 ﻿using OpenTK.Mathematics;
 
+enum CollisionShape
+{
+    None,
+    Square
+}
+
 namespace Pong
 {
     internal class Collider : Component
     {
-        private float[] vertices;
+        private Vector2[] vertices;
+        public CollisionShape shape = CollisionShape.None;
 
         Vector2[] sides;
         Vector2[] normals;
 
+        public override void Start()
+        {
+            switch(shape)
+            {
+                case CollisionShape.Square:
+                    vertices = new Vector2[] {
+                        (-0.5f,  0.5f),
+                        (0.5f,  0.5f),
+                        (0.5f, -0.5f),
+                        (-0.5f, -0.5f)
+                    };
+                    break;
+            }
+        }
+
+        public Vector2[] GetVertices() => vertices;
         public Vector2[] GetSides()
         {
-            int vertexCount = vertices.Length / 2;
+            int vertexCount = vertices.Length;
 
             sides = new Vector2[vertexCount];
 
-            for (int i = 0; i < vertexCount; i++)
+            for(int i = 0; i < vertexCount; i++)
             {
-                int next = (i + 1) % vertexCount;
+                Vector2 currentVertex;
+                Vector2 nextVertex;
 
-                Vector2 current = new Vector2(
-                    vertices[i * 2],
-                    vertices[i * 2 + 1]
-                );
+                if(i != vertexCount - 1)
+                {
+                    currentVertex = vertices[i];
+                    nextVertex = vertices[i + 1];
+                }
+                else
+                {
+                    currentVertex = vertices[i];
+                    nextVertex = vertices[0];
+                }
 
-                Vector2 nextVertex = new Vector2(
-                    vertices[next * 2],
-                    vertices[next * 2 + 1]
-                );
-
-                sides[i] = nextVertex - current;
+                sides[i] = new Vector2(nextVertex.X - currentVertex.X, nextVertex.Y - currentVertex.Y);
             }
 
             return sides;
-        }
-
-        public Vector2[] GetNormals()
-        {
-            int vertexCount = vertices.Length / 2;
-
-            normals = new Vector2[vertexCount];
-
-            for (int i = 0; i < sides.Length; i++)
-            {
-                normals[i] = new Vector2(-sides[i].Y, sides[i].X).Normalized();
-            }
-
-            return normals;
         }
     }
 }

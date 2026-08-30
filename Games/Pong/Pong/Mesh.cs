@@ -1,4 +1,5 @@
 ﻿using OpenTK.Graphics.OpenGL4;
+using OpenTK.Mathematics;
 
 namespace Pong
 {
@@ -11,7 +12,6 @@ namespace Pong
         private int ElementBufferObject { get; set; }
 
         private float[] vertices;
-
         private uint[] indices;
 
         public Mesh(float[] vertices, uint[] indices)
@@ -35,7 +35,7 @@ namespace Pong
 
             GL.BufferData(BufferTarget.ArrayBuffer, vertices.Length * sizeof(float), vertices, BufferUsageHint.StaticDraw);
 
-            GL.VertexAttribPointer(0, 3, VertexAttribPointerType.Float, false, 3 * sizeof(float), 0);
+            GL.VertexAttribPointer(0, 2, VertexAttribPointerType.Float, false, 2 * sizeof(float), 0);
             GL.EnableVertexAttribArray(0);
         }
 
