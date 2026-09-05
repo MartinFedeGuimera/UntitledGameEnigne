@@ -1,5 +1,5 @@
 ﻿using OpenTK.Mathematics;
-using static System.Formats.Asn1.AsnWriter;
+using UntitledGameEngine.Objects.GameObject;
 
 enum CollisionShape
 {
@@ -7,7 +7,7 @@ enum CollisionShape
     Square
 }
 
-namespace Pong
+namespace UntitledGameEngine.Collision
 {
     internal class Collider : Component
     {

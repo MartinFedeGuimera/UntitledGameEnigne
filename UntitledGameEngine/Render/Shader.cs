@@ -1,6 +1,6 @@
 ﻿using OpenTK.Graphics.OpenGL4;
 
-namespace Pong
+namespace UntitledGameEngine.Render
 {
     public class Shader
     {

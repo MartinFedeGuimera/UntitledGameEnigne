@@ -1,7 +1,7 @@
 ﻿using OpenTK.Graphics.OpenGL4;
 using OpenTK.Mathematics;
 
-namespace Pong
+namespace UntitledGameEngine.Render
 {
     internal class Mesh
     {

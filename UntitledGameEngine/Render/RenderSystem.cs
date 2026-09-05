@@ -2,7 +2,7 @@
 using System.Drawing;
 using OpenTK.Mathematics;
 
-namespace Pong
+namespace UntitledGameEngine.Render
 {
     internal class RenderSystem : IDisposable
     {

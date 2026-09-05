@@ -1,6 +1,6 @@
 ﻿using OpenTK.Mathematics;
 
-namespace Pong
+namespace UntitledGameEngine.Render
 {
     internal static class PrimitiveMesh
     {
@@ -32,7 +32,7 @@ namespace Pong
 
             for (int i = 0; i < segments; i++)
             {
-                float angle = (360.0f / segments) * i;
+                float angle = 360.0f / segments * i;
                 float radians = MathHelper.DegreesToRadians(angle);
 
                 vertices[i * 2 + 2] = MathF.Cos(radians) * radius;

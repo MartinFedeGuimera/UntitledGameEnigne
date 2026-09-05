@@ -2,7 +2,7 @@
 using OpenTK;
 using OpenTK.Input;
 
-namespace Pong
+namespace UntitledGameEngine.Input.Input
 {
     internal class Action
     {

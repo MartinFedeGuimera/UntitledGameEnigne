@@ -1,4 +1,6 @@
-﻿namespace Pong
+﻿using UntitledGameEngine.Render;
+
+namespace UntitledGameEngine.Objects.GameObject
 {
     internal class GameObject
     {

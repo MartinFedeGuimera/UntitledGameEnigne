@@ -1,6 +1,6 @@
 ﻿using OpenTK.Mathematics;
 
-namespace Pong
+namespace UntitledGameEngine.Objects.GameObject
 {
     internal class Transform
     {

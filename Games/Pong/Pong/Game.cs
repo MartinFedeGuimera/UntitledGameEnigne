@@ -2,6 +2,10 @@
 using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
 using OpenTK.Windowing.Desktop;
+using Pong.Collision;
+using Pong.Objects;
+using Pong.Objects.GameObject;
+using Pong.Render;
 using System.Drawing;
 
 namespace Pong

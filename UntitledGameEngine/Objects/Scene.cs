@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using UntitledGameEngine.Render;
 
-namespace Pong
+namespace UntitledGameEngine.Objects.GameObject
 {
     internal class Scene
     {

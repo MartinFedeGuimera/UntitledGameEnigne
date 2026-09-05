@@ -1,6 +1,7 @@
-﻿using System.Drawing;
+﻿using UntitledGameEngine.Objects.GameObject;
+using System.Drawing;
 
-namespace Pong
+namespace UntitledGameEngine.Render
 {
     public enum Shape
     {

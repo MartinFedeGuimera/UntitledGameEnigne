@@ -1,6 +1,6 @@
 ﻿using OpenTK.Windowing.GraphicsLibraryFramework;
 
-namespace Pong
+namespace UntitledGameEngine.Input.Input
 {
     internal static class Input
     {
