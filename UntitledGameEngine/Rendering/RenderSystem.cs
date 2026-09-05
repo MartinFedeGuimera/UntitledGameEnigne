@@ -1,6 +1,7 @@
 ﻿using OpenTK.Graphics.OpenGL4;
+using Matrix4 = OpenTK.Mathematics.Matrix4;
 using System.Drawing;
-using OpenTK.Mathematics;
+using System.Numerics;
 
 namespace UntitledGameEngine.Rendering
 {
@@ -11,12 +12,12 @@ namespace UntitledGameEngine.Rendering
         int projectionLocation;
         int colorLocation;
 
-        Matrix4 projection;
+        Matrix4x4 projection;
 
         Mesh square = PrimitiveMesh.CreateSquare();
         Mesh circle = PrimitiveMesh.CreateCircle(32);
 
-        public Color4 backgroundColor = Color4.Black;
+        public Color backgroundColor = Color.Black;
 
         public void Initialize()
         {
@@ -39,12 +40,15 @@ namespace UntitledGameEngine.Rendering
         {
             GL.Clear(ClearBufferMask.ColorBufferBit);
 
-            Matrix4 model = Matrix4.CreateScale(scale.X, scale.Y, 1) * Matrix4.CreateTranslation(position.X, position.Y, 0);
+            Matrix4x4 model = Matrix4x4.CreateScale(scale.X, scale.Y, 1) * Matrix4x4.CreateTranslation(position.X, position.Y, 0);
 
             shader.Use();
 
-            GL.UniformMatrix4(modelLocation, false, ref model);
-            GL.UniformMatrix4(projectionLocation, false, ref projection);
+            Matrix4 openTkModel = OpenTKConversions.ConvertMatrix(model);
+            Matrix4 openTkProjection = OpenTKConversions.ConvertMatrix(projection);
+
+            GL.UniformMatrix4(modelLocation, false, ref openTkModel);
+            GL.UniformMatrix4(projectionLocation, false, ref openTkProjection);
 
             GL.Uniform4(colorLocation, color);
 
@@ -55,12 +59,15 @@ namespace UntitledGameEngine.Rendering
         {
             GL.Clear(ClearBufferMask.ColorBufferBit);
 
-            Matrix4 model = Matrix4.CreateScale(scale.X, scale.Y, 1) * Matrix4.CreateTranslation(position.X, position.Y, 0);
+            Matrix4x4 model = Matrix4x4.CreateScale(scale.X, scale.Y, 1) * Matrix4x4.CreateTranslation(position.X, position.Y, 0);
 
             shader.Use();
 
-            GL.UniformMatrix4(modelLocation, false, ref model);
-            GL.UniformMatrix4(projectionLocation, false, ref projection);
+            Matrix4 openTkModel = OpenTKConversions.ConvertMatrix(model);
+            Matrix4 openTkProjection = OpenTKConversions.ConvertMatrix(projection);
+
+            GL.UniformMatrix4(modelLocation, false, ref openTkModel);
+            GL.UniformMatrix4(projectionLocation, false, ref openTkProjection);
 
             GL.Uniform4(colorLocation, color);
 
@@ -77,7 +84,7 @@ namespace UntitledGameEngine.Rendering
 
         public void SetViewportSize(int width, int height)
         {
-            projection = Matrix4.CreateOrthographicOffCenter(0, width, height, 0, -1, 1);
+            projection = Matrix4x4.CreateOrthographicOffCenter(0, width, height, 0, -1, 1);
         }
     }
 }
