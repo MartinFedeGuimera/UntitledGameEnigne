@@ -2,7 +2,7 @@
 
 namespace UntitledGameEngine.Objects.GameObject
 {
-    internal class GameObject
+    public class GameObject
     {
         public string Name;
         public Transform Transform;

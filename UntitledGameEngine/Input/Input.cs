@@ -2,7 +2,7 @@
 
 namespace UntitledGameEngine.Input.Input
 {
-    internal static class Input
+    public static class Input
     {
         private static KeyboardState currentState;
         private static KeyboardState previousState;

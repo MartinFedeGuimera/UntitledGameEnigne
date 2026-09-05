@@ -4,7 +4,7 @@ using OpenTK.Input;
 
 namespace UntitledGameEngine.Input.Input
 {
-    internal class Action
+    public class Action
     {
         
     }

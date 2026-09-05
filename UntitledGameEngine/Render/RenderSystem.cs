@@ -4,7 +4,7 @@ using OpenTK.Mathematics;
 
 namespace UntitledGameEngine.Render
 {
-    internal class RenderSystem : IDisposable
+    public class RenderSystem : IDisposable
     {
         Shader shader;
         int modelLocation;

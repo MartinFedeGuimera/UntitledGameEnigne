@@ -2,7 +2,7 @@
 
 namespace UntitledGameEngine.Objects.GameObject
 {
-    internal class Scene
+    public class Scene
     {
         private List<GameObject> gameObjects = new List<GameObject>();
 

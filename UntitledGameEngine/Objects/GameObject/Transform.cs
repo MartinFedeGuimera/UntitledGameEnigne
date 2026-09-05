@@ -2,7 +2,7 @@
 
 namespace UntitledGameEngine.Objects.GameObject
 {
-    internal class Transform
+    public class Transform
     {
         private Vector2 position;
         private Vector2 rotation;

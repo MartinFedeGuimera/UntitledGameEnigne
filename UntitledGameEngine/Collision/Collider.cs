@@ -1,7 +1,7 @@
 ﻿using OpenTK.Mathematics;
 using UntitledGameEngine.Objects.GameObject;
 
-enum CollisionShape
+public enum CollisionShape
 {
     None,
     Square
@@ -9,7 +9,7 @@ enum CollisionShape
 
 namespace UntitledGameEngine.Collision
 {
-    internal class Collider : Component
+    public class Collider : Component
     {
         private Vector2[] vertices;
         public CollisionShape shape = CollisionShape.None;

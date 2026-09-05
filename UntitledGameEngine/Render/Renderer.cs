@@ -11,7 +11,7 @@ namespace UntitledGameEngine.Render
         Triangle
     }
 
-    internal class Renderer : Component
+    public class Renderer : Component
     {
         public Shape shape = Shape.None;
         public Color color = Color.White;

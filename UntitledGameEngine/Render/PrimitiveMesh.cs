@@ -2,7 +2,7 @@
 
 namespace UntitledGameEngine.Render
 {
-    internal static class PrimitiveMesh
+    public static class PrimitiveMesh
     {
         public static Mesh CreateSquare()
         {

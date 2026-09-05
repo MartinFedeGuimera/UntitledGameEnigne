@@ -2,7 +2,7 @@
 
 namespace UntitledGameEngine.Collision
 {
-    internal class CollisionSystem
+    public class CollisionSystem
     {
         private List<Collider> colliders = new List<Collider>();
 
