@@ -1,4 +1,5 @@
 ﻿using OpenTK.Mathematics;
+using static System.Formats.Asn1.AsnWriter;
 
 enum CollisionShape
 {
@@ -30,11 +31,24 @@ namespace Pong
                     break;
             }
 
+            GetVertices();
             GetSides();
             GetNormals();
         }
 
-        public Vector2[] GetVertices() => vertices;
+        public Vector2[] GetVertices()
+        {
+            for(int i = 0; i < vertices.Length; i++)
+            {
+                Vector2 vertex = vertices[i] * GameObject.Transform.Scale;
+                vertex += GameObject.Transform.Position;
+
+                vertices[i] = vertex;
+            }
+
+            return vertices;
+        }
+
         public Vector2[] GetSides()
         {
             int vertexCount = vertices.Length;

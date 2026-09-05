@@ -9,6 +9,8 @@ namespace Pong
     public class Game : GameWindow
     {
         RenderSystem render = new RenderSystem();
+        CollisionSystem collider = new CollisionSystem();
+
         Scene scene = new Scene();
 
         GameObject leftPaddle = new GameObject("LeftPaddle");
@@ -26,7 +28,7 @@ namespace Pong
         {
             base.OnLoad();
 
-            GL.ClearColor(Color.Blue);
+            GL.ClearColor(Color.Black);
 
             render.Initialize();
             render.SetViewportSize(Size.X, Size.Y);
@@ -34,13 +36,23 @@ namespace Pong
             scene.AddGameObject(leftPaddle);
 
             leftPaddle.AddComponent<Renderer>().shape = Shape.Square;
+            leftPaddle.GetComponent<Renderer>().color = Color.Blue;
+
+            collider.AddCollider(leftPaddle.AddComponent<Collider>());
+            leftPaddle.GetComponent<Collider>().shape = CollisionShape.Square;
+
             leftPaddle.Transform.Position = new Vector2(100, 300);
             leftPaddle.Transform.Scale = new Vector2(50, 100);
 
             scene.AddGameObject(rightPaddle);
 
             rightPaddle.AddComponent<Renderer>().shape = Shape.Square;
-            rightPaddle.Transform.Position = new Vector2(700, 300);
+            rightPaddle.GetComponent<Renderer>().color = Color.Red;
+
+            collider.AddCollider(rightPaddle.AddComponent<Collider>());
+            rightPaddle.GetComponent<Collider>().shape = CollisionShape.Square;
+
+            rightPaddle.Transform.Position = new Vector2(75, 300);
             rightPaddle.Transform.Scale = new Vector2(50, 100);
 
             scene.AddGameObject(ball);
@@ -57,6 +69,8 @@ namespace Pong
             base.OnUpdateFrame(args);
 
             Input.Update(KeyboardState);
+            collider.Update();
+
             scene.Update((float)args.Time);
         }
 
