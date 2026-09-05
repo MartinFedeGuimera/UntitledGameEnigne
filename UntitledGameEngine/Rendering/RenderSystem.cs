@@ -20,7 +20,10 @@ namespace UntitledGameEngine.Rendering
 
         public void Initialize()
         {
-            shader = new Shader("Resources/Shaders/shader.vert", "Resources/Shaders/shader.frag");
+            string vertexPath = Path.Combine("Resources", "Shaders", "shader.vert");
+            string fragmentPath = Path.Combine("Resources", "Shaders", "shader.frag");
+
+            shader = new Shader(vertexPath, fragmentPath);
 
             GL.ClearColor(backgroundColor);
 

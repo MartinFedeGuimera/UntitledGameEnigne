@@ -18,6 +18,12 @@ namespace UntitledGameEngine.Physics
 
         private bool DetectCollisions()
         {
+            if(colliders.Count <= 0)
+            {
+                Console.WriteLine("No Collision Detected!");
+                return false;
+            }
+
             for(int i = 0; i < colliders.Count; i++)
             {
                 Collider a = colliders[i];
