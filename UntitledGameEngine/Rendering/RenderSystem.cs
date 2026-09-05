@@ -2,7 +2,7 @@
 using System.Drawing;
 using OpenTK.Mathematics;
 
-namespace UntitledGameEngine.Render
+namespace UntitledGameEngine.Rendering
 {
     public class RenderSystem : IDisposable
     {
@@ -16,9 +16,13 @@ namespace UntitledGameEngine.Render
         Mesh square = PrimitiveMesh.CreateSquare();
         Mesh circle = PrimitiveMesh.CreateCircle(32);
 
+        public Color4 backgroundColor = Color4.Black;
+
         public void Initialize()
         {
             shader = new Shader("Resources/Shaders/shader.vert", "Resources/Shaders/shader.frag");
+
+            GL.ClearColor(backgroundColor);
 
             modelLocation = GL.GetUniformLocation(shader.Handle, "ModelMatrix");
             projectionLocation = GL.GetUniformLocation(shader.Handle, "ProjectionMatrix");
@@ -30,6 +34,8 @@ namespace UntitledGameEngine.Render
 
         public void DrawSquare(Vector2 position, Vector2 scale, Color color)
         {
+            GL.Clear(ClearBufferMask.ColorBufferBit);
+
             Matrix4 model = Matrix4.CreateScale(scale.X, scale.Y, 1) * Matrix4.CreateTranslation(position.X, position.Y, 0);
 
             shader.Use();
@@ -44,6 +50,8 @@ namespace UntitledGameEngine.Render
 
         public void DrawCircle(Vector2 position, Vector2 scale, Color color)
         {
+            GL.Clear(ClearBufferMask.ColorBufferBit);
+
             Matrix4 model = Matrix4.CreateScale(scale.X, scale.Y, 1) * Matrix4.CreateTranslation(position.X, position.Y, 0);
 
             shader.Use();

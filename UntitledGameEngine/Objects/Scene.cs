@@ -1,10 +1,17 @@
-﻿using UntitledGameEngine.Render;
+﻿using UntitledGameEngine.Rendering;
 
-namespace UntitledGameEngine.Objects.GameObject
+namespace UntitledGameEngine.Core
 {
     public class Scene
     {
+        public string Name { get; set; }
+
         private List<GameObject> gameObjects = new List<GameObject>();
+
+        public Scene(string name = "NewScene")
+        {
+            Name = name;
+        }
 
         public void AddGameObject(GameObject gameObject)
         {

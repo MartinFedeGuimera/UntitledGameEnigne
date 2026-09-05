@@ -1,6 +1,6 @@
 ﻿using OpenTK.Windowing.GraphicsLibraryFramework;
 
-namespace UntitledGameEngine.Input.Input
+namespace UntitledGameEngine.Core
 {
     public static class Input
     {

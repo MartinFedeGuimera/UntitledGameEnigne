@@ -1,6 +1,6 @@
-﻿using UntitledGameEngine.Render;
+﻿using UntitledGameEngine.Rendering;
 
-namespace UntitledGameEngine.Objects.GameObject
+namespace UntitledGameEngine.Core
 {
     public class GameObject
     {

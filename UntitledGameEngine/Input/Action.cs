@@ -1,8 +1,4 @@
-﻿using System;
-using OpenTK;
-using OpenTK.Input;
-
-namespace UntitledGameEngine.Input.Input
+﻿namespace UntitledGameEngine.Core
 {
     public class Action
     {

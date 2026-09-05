@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36310.24 d17.14
+VisualStudioVersion = 17.14.36310.24
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pong", "Pong\Pong.csproj", "{F4565040-C7E4-4390-B7B5-22D711CE4BAA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UntitledGameEngine", "..\..\UntitledGameEngine\UntitledGameEngine.csproj", "{D8807530-6EC1-1DFB-45E5-2FFF9F625C0F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{F4565040-C7E4-4390-B7B5-22D711CE4BAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F4565040-C7E4-4390-B7B5-22D711CE4BAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F4565040-C7E4-4390-B7B5-22D711CE4BAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8807530-6EC1-1DFB-45E5-2FFF9F625C0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8807530-6EC1-1DFB-45E5-2FFF9F625C0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8807530-6EC1-1DFB-45E5-2FFF9F625C0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8807530-6EC1-1DFB-45E5-2FFF9F625C0F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

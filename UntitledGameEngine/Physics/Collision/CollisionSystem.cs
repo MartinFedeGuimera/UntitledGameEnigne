@@ -1,6 +1,6 @@
 ﻿using OpenTK.Mathematics;
 
-namespace UntitledGameEngine.Collision
+namespace UntitledGameEngine.Physics
 {
     public class CollisionSystem
     {

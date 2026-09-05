@@ -1,6 +1,6 @@
 ﻿using OpenTK.Mathematics;
 
-namespace UntitledGameEngine.Objects.GameObject
+namespace UntitledGameEngine.Core
 {
     public class Transform
     {

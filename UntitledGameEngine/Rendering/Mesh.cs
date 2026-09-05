@@ -1,6 +1,6 @@
 ﻿using OpenTK.Graphics.OpenGL4;
 
-namespace UntitledGameEngine.Render
+namespace UntitledGameEngine.Rendering
 {
     public class Mesh
     {

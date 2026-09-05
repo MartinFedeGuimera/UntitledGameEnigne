@@ -1,7 +1,7 @@
-﻿using UntitledGameEngine.Objects.GameObject;
+﻿using UntitledGameEngine.Core;
 using System.Drawing;
 
-namespace UntitledGameEngine.Render
+namespace UntitledGameEngine.Rendering
 {
     public enum Shape
     {

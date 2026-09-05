@@ -1,6 +1,6 @@
 ﻿using OpenTK.Mathematics;
 
-namespace UntitledGameEngine.Render
+namespace UntitledGameEngine.Rendering
 {
     public static class PrimitiveMesh
     {
