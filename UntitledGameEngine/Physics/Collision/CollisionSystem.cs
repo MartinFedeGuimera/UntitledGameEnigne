@@ -13,18 +13,15 @@ namespace UntitledGameEngine.Physics
 
         public void Update()
         {
-            DetectCollisions();
+            CheckColliders();
         }
 
-        private bool DetectCollisions()
+        private void CheckColliders()
         {
-            if(colliders.Count <= 0)
-            {
-                Console.WriteLine("No Collision Detected!");
-                return false;
-            }
+            if (colliders.Count <= 0)
+                return;
 
-            for(int i = 0; i < colliders.Count; i++)
+            for (int i = 0; i < colliders.Count; i++)
             {
                 Collider a = colliders[i];
 
@@ -32,24 +29,49 @@ namespace UntitledGameEngine.Physics
                 {
                     Collider b = colliders[j];
 
-                    Vector2[] normals = CalculateNormals(a, b);
+                    Collision collision = DetectCollision(a, b);
 
-                    foreach(var normal in normals)
+                    if(collision != null)
                     {
-                        var aProjection = Proyect(a.GetVertices(), normal);
-                        var bProjection = Proyect(b.GetVertices(), normal);
-
-                        if(aProjection.min > bProjection.max || bProjection.min > aProjection.max)
-                        {
-                            Console.WriteLine("No Collision Detected!");
-                            return false;
-                        }
+                        a.GameObject.GetComponent<PhysicBody>().OnCollide(collision);
+                        b.GameObject.GetComponent<PhysicBody>().OnCollide(collision);
                     }
                 }
             }
+        }
 
-            Console.WriteLine("Collision Detected!");
-            return true;
+        private Collision DetectCollision(Collider a, Collider b)
+        {
+            Vector2[] normals = CalculateNormals(a, b);
+
+            (float min, float max) aProjection = (0, 0);
+            (float min, float max) bProjection = (0, 0);
+
+            float penetration = 0.0f;
+            float overlap;
+
+            Vector2 collisionNormal = Vector2.Zero;
+
+            foreach (var normal in normals)
+            {
+                aProjection = Proyect(a.GetVertices(), normal);
+                bProjection = Proyect(b.GetVertices(), normal);
+
+                if (aProjection.min > bProjection.max || bProjection.min > aProjection.max)
+                    return null;
+
+                overlap = MathF.Min(aProjection.max, bProjection.max) - MathF.Max(aProjection.min, bProjection.min);
+
+                if(overlap < penetration)
+                {
+                    penetration = overlap;
+                    collisionNormal = normal;
+                }
+            }
+
+            Collision collision = new Collision(a, b, collisionNormal, penetration);
+
+            return collision;
         }
 
         private Vector2[] CalculateNormals(Collider a, Collider b)
