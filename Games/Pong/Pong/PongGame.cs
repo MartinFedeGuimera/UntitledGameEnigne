@@ -32,9 +32,9 @@ namespace Pong
             rightPaddle.Transform.Scale = new Vector2(25, 100);
 
             ball.AddComponent<Renderer>().shape = Shape.Circle;
-            ball.AddComponent<Collider>();
+            ball.AddComponent<Collider>().shape = CollisionShape.Circle;
             ball.AddComponent<RigidBody>().useGravity = false;
-            ball.GetComponent<RigidBody>().velocity = new Vector2(50, 50);
+            ball.GetComponent<RigidBody>().velocity = new Vector2(50, 0);
 
             ball.Transform.Position = new Vector2(400, 300);
             ball.Transform.Scale = new Vector2(25, 25);
