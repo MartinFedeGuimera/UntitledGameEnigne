@@ -25,7 +25,6 @@ namespace Pong
             leftPaddle.Transform.Scale = new Vector2(25, 100);
 
             rightPaddle.AddComponent<Renderer>().shape = Shape.Square;
-
             rightPaddle.AddComponent<Collider>().shape = CollisionShape.Square;
             rightPaddle.AddComponent<KinematicBody>();
 
@@ -33,9 +32,8 @@ namespace Pong
             rightPaddle.Transform.Scale = new Vector2(25, 100);
 
             ball.AddComponent<Renderer>().shape = Shape.Circle;
-            ball.AddComponent<Collider>().shape = CollisionShape.Circle;
+            ball.AddComponent<Collider>();
             ball.AddComponent<RigidBody>().useGravity = false;
-            ball.GetComponent<RigidBody>().velocity = new Vector2(50, 0);
 
             ball.Transform.Position = new Vector2(400, 300);
             ball.Transform.Scale = new Vector2(25, 25);
@@ -43,6 +41,8 @@ namespace Pong
             mainScene.AddGameObject(ball);
             mainScene.AddGameObject(leftPaddle);
             mainScene.AddGameObject(rightPaddle);
+
+            ball.GetComponent<RigidBody>().velocity = new Vector2(50, 0);
 
             base.Start();
         }

@@ -49,6 +49,8 @@ namespace UntitledGameEngine.Physics
                     {
                         a.GameObject.GetComponent<PhysicBody>().OnCollide(collision);
                         b.GameObject.GetComponent<PhysicBody>().OnCollide(collision);
+
+                        Console.WriteLine("CollisionDetected");
                     }
                 }
             }
