@@ -28,6 +28,12 @@ namespace UntitledGameEngine.Core
             renderSystem.Initialize();
             renderSystem.SetViewportSize(window.Size.X, window.Size.Y);
 
+            foreach(var gameObject in mainScene.GetGameObjects())
+            {
+                if(gameObject.GetComponent<Collider>() != null)
+                    collisionSystem.AddCollider(gameObject.GetComponent<Collider>());
+            }
+
             mainScene.Start();
         }
 

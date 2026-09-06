@@ -4,7 +4,8 @@ using UntitledGameEngine.Core;
 public enum CollisionShape
 {
     None,
-    Square
+    Square,
+    Circle
 }
 
 namespace UntitledGameEngine.Physics
@@ -40,20 +41,23 @@ namespace UntitledGameEngine.Physics
 
         public Vector2[] GetVertices()
         {
+            Vector2[] worldVertices = new Vector2[vertices.Length];
+
             for(int i = 0; i < vertices.Length; i++)
             {
                 Vector2 vertex = vertices[i] * GameObject.Transform.Scale;
                 vertex += GameObject.Transform.Position;
 
-                vertices[i] = vertex;
+                worldVertices[i] = vertex;
             }
 
-            return vertices;
+            return worldVertices;
         }
 
         public Vector2[] GetSides()
         {
-            int vertexCount = vertices.Length;
+            Vector2[] worldVertices = GetVertices();
+            int vertexCount = worldVertices.Length;
 
             sides = new Vector2[vertexCount];
 
@@ -64,13 +68,13 @@ namespace UntitledGameEngine.Physics
 
                 if(i != vertexCount - 1)
                 {
-                    currentVertex = vertices[i];
-                    nextVertex = vertices[i + 1];
+                    currentVertex = worldVertices[i];
+                    nextVertex = worldVertices[i + 1];
                 }
                 else
                 {
-                    currentVertex = vertices[i];
-                    nextVertex = vertices[0];
+                    currentVertex = worldVertices[i];
+                    nextVertex = worldVertices[0];
                 }
 
                 sides[i] = new Vector2(nextVertex.X - currentVertex.X, nextVertex.Y - currentVertex.Y);
@@ -85,7 +89,7 @@ namespace UntitledGameEngine.Physics
 
             for(int i = 0; i < normals.Length; i++)
             {
-                normals[i] = new Vector2(-sides[i].Y, sides[i].X);
+                normals[i] = Vector2.Normalize(new Vector2(-sides[i].Y, sides[i].X));
             }
 
             return normals;

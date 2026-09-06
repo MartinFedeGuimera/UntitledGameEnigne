@@ -41,5 +41,7 @@ namespace UntitledGameEngine.Core
                 gameObject.Render(renderSystem);
             }
         }
+
+        public List<GameObject> GetGameObjects() => gameObjects;
     }
 }

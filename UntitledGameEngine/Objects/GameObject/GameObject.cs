@@ -26,7 +26,7 @@ namespace UntitledGameEngine.Core
             return component;
         }
 
-        public T GetComponent<T>() where T : Component, new()
+        public T GetComponent<T>() where T : Component
         {
             foreach (Component component in components)
             {
