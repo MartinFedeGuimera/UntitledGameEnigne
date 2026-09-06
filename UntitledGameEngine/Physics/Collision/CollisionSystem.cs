@@ -1,4 +1,5 @@
 ﻿using System.Numerics;
+using UntitledGameEngine.Core;
 
 namespace UntitledGameEngine.Physics
 {
@@ -29,67 +30,29 @@ namespace UntitledGameEngine.Physics
                 {
                     Collider b = colliders[j];
 
-<<<<<<< Updated upstream
-                    Collision collision = DetectCollision(a, b);
-
-                    if(collision != null)
-                    {
-=======
                     Collision collision = new Collision(a, b, Vector2.Zero, 0.0f);
 
                     if(a.shape == CollisionShape.Circle && b.shape == CollisionShape.Square)
                     {
-
+                        collision = DetectCircleConvexCollision(a, b);
                     }
                     else if(a.shape == CollisionShape.Circle && b.shape == CollisionShape.Circle)
                     {
                         collision = DetectCircleCollision(a, b);
                     }
                     else
+                    {
                         collision = DetectConvexCollision(a, b);
+                    }
 
                     if (collision != null)
                     {
->>>>>>> Stashed changes
                         a.GameObject.GetComponent<PhysicBody>().OnCollide(collision);
                         b.GameObject.GetComponent<PhysicBody>().OnCollide(collision);
                     }
                 }
             }
         }
-<<<<<<< Updated upstream
-
-        private Collision DetectCollision(Collider a, Collider b)
-        {
-            Vector2[] normals = CalculateNormals(a, b);
-
-            (float min, float max) aProjection = (0, 0);
-            (float min, float max) bProjection = (0, 0);
-
-            float penetration = 0.0f;
-            float overlap;
-
-            Vector2 collisionNormal = Vector2.Zero;
-
-            foreach (var normal in normals)
-            {
-                aProjection = Proyect(a.GetVertices(), normal);
-                bProjection = Proyect(b.GetVertices(), normal);
-
-                if (aProjection.min > bProjection.max || bProjection.min > aProjection.max)
-                    return null;
-
-                overlap = MathF.Min(aProjection.max, bProjection.max) - MathF.Max(aProjection.min, bProjection.min);
-
-                if(overlap < penetration)
-                {
-                    penetration = overlap;
-                    collisionNormal = normal;
-                }
-            }
-
-            Collision collision = new Collision(a, b, collisionNormal, penetration);
-=======
 
         private Collision DetectConvexCollision(Collider a, Collider b)
         {
@@ -146,9 +109,37 @@ namespace UntitledGameEngine.Physics
             }
 
             Console.WriteLine("Collision Detected!");
-            Collision collision = new Collision(a, b, Vector2.Normalize(difference), totalRadious);
->>>>>>> Stashed changes
+            Collision collision = new Collision(a, b, Vector2.Normalize(difference), totalRadious - distance);
 
+            return collision;
+        }
+
+        private Collision DetectCircleConvexCollision(Collider a, Collider b)
+        {
+            Collider rect = a.shape == CollisionShape.Square ? a : b;
+            Collider circle = a.shape == CollisionShape.Circle ? a : b;
+
+            Vector2 circleCenter = circle.GameObject.Transform.Position;
+
+            Vector2 rectCenter = rect.GameObject.Transform.Position;
+            Vector2 rectSize = rect.GameObject.Transform.Scale;
+
+            Vector2 rectMin = rectCenter - rectSize / 2;
+            Vector2 rectMax = rectCenter + rectSize / 2;
+
+            float closestX = MathF.Max(rectMin.X, MathF.Min(rectMax.X, circleCenter.X));
+            float closestY = MathF.Max(rectMin.Y, MathF.Min(rectMax.Y, circleCenter.Y));
+            Vector2 closestPoint = new Vector2(closestX, closestY);
+
+            Vector2 difference = circleCenter - closestPoint;
+            float distance = difference.Length();
+
+            float circleRadious = circle.GameObject.Transform.Scale.X * 0.5f;
+
+            if (distance > circleRadious)
+                return null;
+
+            Collision collision = new Collision(a, b, Vector2.Normalize(difference), circleRadious - distance);
             return collision;
         }
 

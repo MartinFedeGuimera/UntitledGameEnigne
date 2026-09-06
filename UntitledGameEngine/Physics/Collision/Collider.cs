@@ -30,6 +30,21 @@ namespace UntitledGameEngine.Physics
                         new Vector2(-0.5f, -0.5f)
                     };
                     break;
+                case CollisionShape.Circle:
+                    vertices = new Vector2[(32 + 1) * 2];
+
+                    float radius = 0.5f;
+
+                    vertices[0] = Vector2.Zero;
+
+                    for (int i = 0; i < 32; i++)
+                    {
+                        float angle = 360.0f / 32 * i;
+                        float radians = (float)Double.DegreesToRadians(angle);
+
+                        vertices[i] = new Vector2(MathF.Cos(radians) * radius, MathF.Sin(radians) * radius);
+                    }
+                    break;
                 case CollisionShape.None:
                     return;
             }
