@@ -1,4 +1,4 @@
-﻿using OpenTK.Mathematics;
+﻿using System.Numerics;
 using UntitledGameEngine.Core;
 
 public enum CollisionShape
@@ -23,10 +23,10 @@ namespace UntitledGameEngine.Physics
             {
                 case CollisionShape.Square:
                     vertices = new Vector2[] {
-                        (-0.5f,  0.5f),
-                        (0.5f,  0.5f),
-                        (0.5f, -0.5f),
-                        (-0.5f, -0.5f)
+                        new Vector2(-0.5f,  0.5f),
+                        new Vector2(0.5f,  0.5f),
+                        new Vector2(0.5f, -0.5f),
+                        new Vector2(-0.5f, -0.5f)
                     };
                     break;
             }

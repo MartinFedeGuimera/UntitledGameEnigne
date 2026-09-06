@@ -1,6 +1,4 @@
-﻿using OpenTK.Mathematics;
-
-namespace UntitledGameEngine.Rendering
+﻿namespace UntitledGameEngine.Rendering
 {
     public static class PrimitiveMesh
     {
@@ -33,7 +31,7 @@ namespace UntitledGameEngine.Rendering
             for (int i = 0; i < segments; i++)
             {
                 float angle = 360.0f / segments * i;
-                float radians = MathHelper.DegreesToRadians(angle);
+                float radians = (float)Double.DegreesToRadians(angle);
 
                 vertices[i * 2 + 2] = MathF.Cos(radians) * radius;
                 vertices[i * 2 + 3] = MathF.Sin(radians) * radius;
