@@ -18,7 +18,7 @@ namespace UntitledGameEngine.Rendering
 
         public override void Render(RenderSystem renderSystem)
         {
-            switch(shape)
+            switch (shape)
             {
                 case Shape.Square:
                     renderSystem.DrawSquare(GameObject.Transform.Position, GameObject.Transform.Scale, color);

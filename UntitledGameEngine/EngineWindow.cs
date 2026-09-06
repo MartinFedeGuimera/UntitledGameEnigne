@@ -46,5 +46,12 @@ namespace UntitledGameEngine
         {
             game.UnLoad();
         }
+
+        protected override void OnFramebufferResize(FramebufferResizeEventArgs e)
+        {
+            base.OnFramebufferResize(e);
+            
+            game.OnFramebufferResize(e.Width, e.Height);
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using UntitledGameEngine.Physics;
+﻿using System.Drawing;
+using UntitledGameEngine.Physics;
 using UntitledGameEngine.Rendering;
 
 namespace UntitledGameEngine.Core
@@ -25,6 +26,7 @@ namespace UntitledGameEngine.Core
         public virtual void Start() 
         {
             renderSystem.Initialize();
+            renderSystem.SetViewportSize(window.Size.X, window.Size.Y);
 
             mainScene.Start();
         }
@@ -38,12 +40,19 @@ namespace UntitledGameEngine.Core
 
         public virtual void Render() 
         {
+            renderSystem.BeginFrame();
+
             mainScene.Render(renderSystem);
         }
 
         public virtual void UnLoad()
         {
             renderSystem.Dispose();
+        }
+
+        public virtual void OnFramebufferResize(int width, int height)
+        {
+            renderSystem.SetViewportSize(width, height);
         }
     }
 }
