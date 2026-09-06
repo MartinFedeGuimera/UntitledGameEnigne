@@ -14,9 +14,9 @@ namespace UntitledGameEngine.Physics
             }
         }
 
-        public override void Update(float deltaTime)
+        public override void FixedUpdate(float fixedDeltaTime)
         {
-            GameObject.Transform.Position += velocity * deltaTime;
+            GameObject.Transform.Position += velocity * fixedDeltaTime;
         }
     }
 }

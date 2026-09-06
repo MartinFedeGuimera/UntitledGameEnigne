@@ -26,7 +26,7 @@ namespace UntitledGameEngine.Core
             return component;
         }
 
-        public T GetComponent<T>() where T : Component, new()
+        public T GetComponent<T>() where T : Component
         {
             foreach (Component component in components)
             {
@@ -52,6 +52,14 @@ namespace UntitledGameEngine.Core
             foreach(Component component in components)
             {
                 component.Update(deltaTime);
+            }
+        }
+
+        public void FixedUpdate(float fixedDeltaTime)
+        {
+            foreach (Component component in components)
+            {
+                component.FixedUpdate(fixedDeltaTime);
             }
         }
 
