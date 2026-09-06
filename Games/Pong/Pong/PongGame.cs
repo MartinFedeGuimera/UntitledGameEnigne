@@ -54,6 +54,8 @@ namespace Pong
         public override void Render()
         {
             base.Render();
+
+
         }
 
         public override void UnLoad()

@@ -9,6 +9,9 @@ namespace UntitledGameEngine
     {
         private Game game;
 
+        float fixedDeltaTime = 1.0f / 60.0f;
+        float accumulator = 0.0f;
+
         public EngineWindow(Game game, GameSettings settings) : base(GameWindowSettings.Default, new NativeWindowSettings(){
             ClientSize = new Vector2i(settings.Width, settings.Height),
             Title = settings.Title
@@ -28,15 +31,27 @@ namespace UntitledGameEngine
         {
             base.OnUpdateFrame(args);
 
+            float deltaTime = (float)args.Time;
+
+            accumulator += deltaTime;
+
+            while (accumulator >= fixedDeltaTime)
+            {
+                game.FixedUpdate(fixedDeltaTime);
+
+                accumulator -= fixedDeltaTime;
+            }
+
             Input.Update(KeyboardState);
 
-            game.Update((float)args.Time);
+            game.Update(deltaTime);
         }
 
         protected override void OnRenderFrame(FrameEventArgs args)
         {
             base.OnRenderFrame(args);
 
+            
             game.Render();
 
             SwapBuffers();

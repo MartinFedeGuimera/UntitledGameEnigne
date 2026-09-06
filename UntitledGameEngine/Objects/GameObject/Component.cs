@@ -10,6 +10,7 @@ namespace UntitledGameEngine.Core
         public virtual void Start() { }
 
         public virtual void Update(float deltaTime) { }
+        public virtual void FixedUpdate(float fixedDeltaTime) { }
 
         public virtual void Render(RenderSystem renderSystem) { }
     }

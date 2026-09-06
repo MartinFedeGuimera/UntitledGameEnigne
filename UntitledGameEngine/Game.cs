@@ -44,6 +44,11 @@ namespace UntitledGameEngine.Core
             mainScene.Update(deltaTime);
         }
 
+        public virtual void FixedUpdate(float fixedDeltaTime)
+        {
+            mainScene.FixedUpdate(fixedDeltaTime);
+        }
+
         public virtual void Render() 
         {
             renderSystem.BeginFrame();
