@@ -3,7 +3,11 @@ using UntitledGameEngine.Core;
 
 namespace UntitledGameEngine.Physics
 {
+<<<<<<< Updated upstream
     public class PhysicBody : Component
+=======
+    public abstract class PhysicBody : Component
+>>>>>>> Stashed changes
     {
         public float mass = 1.0f;
         public float gravity = -9.8f;
