@@ -3,7 +3,7 @@ using UntitledGameEngine.Core;
 
 namespace UntitledGameEngine.Physics
 {
-    public class PhysicBody : Component
+    public abstract class PhysicBody : Component
     {
         public float mass = 1.0f;
         public float gravity = -9.8f;

@@ -1,4 +1,4 @@
-﻿using UntitledGameEngine.Core;
+﻿using UntitledGameEngine.Window;
 
 namespace Pong
 {

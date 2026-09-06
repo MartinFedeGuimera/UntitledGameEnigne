@@ -3,6 +3,7 @@ using UntitledGameEngine.Rendering;
 using System.Drawing;
 using UntitledGameEngine.Physics;
 using System.Numerics;
+using UntitledGameEngine.Window;
 
 namespace Pong
 {
@@ -54,6 +55,8 @@ namespace Pong
         public override void Render()
         {
             base.Render();
+
+
         }
 
         public override void UnLoad()
