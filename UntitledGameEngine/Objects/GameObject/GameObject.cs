@@ -55,6 +55,14 @@ namespace UntitledGameEngine.Core
             }
         }
 
+        public void FixedUpdate(float fixedDeltaTime)
+        {
+            foreach (Component component in components)
+            {
+                component.FixedUpdate(fixedDeltaTime);
+            }
+        }
+
         public void Render(RenderSystem renderSystem)
         {
             foreach(Component component in components)

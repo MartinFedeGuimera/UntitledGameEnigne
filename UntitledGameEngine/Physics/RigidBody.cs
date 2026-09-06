@@ -11,12 +11,12 @@ namespace UntitledGameEngine.Physics
             velocity = Vector2.Reflect(velocity, collision.Normal);
         }
 
-        public override void Update(float deltaTime)
+        public override void FixedUpdate(float fixedDeltaTime)
         {
             if(useGravity)
                 velocity.Y -= gravity * mass;
 
-            GameObject.Transform.Position += velocity * deltaTime;
+            GameObject.Transform.Position += velocity * fixedDeltaTime;
         }
     }
 }

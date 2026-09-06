@@ -34,6 +34,14 @@ namespace UntitledGameEngine.Core
             }
         }
 
+        public void FixedUpdate(float fixedDeltaTime)
+        {
+            foreach (GameObject gameObject in gameObjects)
+            {
+                gameObject.FixedUpdate(fixedDeltaTime);
+            }
+        }
+
         public void Render(RenderSystem renderSystem)
         {
             foreach(GameObject gameObject in gameObjects)

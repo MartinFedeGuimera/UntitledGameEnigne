@@ -14,10 +14,10 @@ namespace UntitledGameEngine.Physics
 
         public void Update()
         {
-            CheckColliders();
+            CheckCollisions();
         }
 
-        private void CheckColliders()
+        private void CheckCollisions()
         {
             if (colliders.Count <= 0)
                 return;
