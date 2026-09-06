@@ -1,13 +1,10 @@
 ﻿using OpenTK.Graphics.OpenGL4;
-using OpenTK.Windowing.Common;
-using OpenTK.Windowing.Desktop;
-using OpenTK.Windowing.GraphicsLibraryFramework;
 
-namespace Pong
+namespace UntitledGameEngine.Rendering
 {
     public class Shader
     {
-        int Handle;
+        public int Handle;
 
         public Shader(string vertexPath, string fragmentPath)
         {

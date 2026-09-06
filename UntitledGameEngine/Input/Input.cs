@@ -1,8 +1,8 @@
 ﻿using OpenTK.Windowing.GraphicsLibraryFramework;
 
-namespace Pong
+namespace UntitledGameEngine.Core
 {
-    internal static class Input
+    public static class Input
     {
         private static KeyboardState currentState;
         private static KeyboardState previousState;
