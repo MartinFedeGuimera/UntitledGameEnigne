@@ -1,5 +1,4 @@
-﻿using System.Drawing;
-using UntitledGameEngine.Core;
+﻿using UntitledGameEngine.Core;
 
 namespace Pong
 {
@@ -7,8 +6,15 @@ namespace Pong
     {
         static void Main(string[] args)
         {
-            PongGame pong = new PongGame();
+            GameSettings settings = new GameSettings
+            {
+                Width = 800,
+                Height = 600,
+                Title = "Pong"
+            };
 
+
+            PongGame pong = new PongGame(settings);      
             pong.Run();
         }
     }

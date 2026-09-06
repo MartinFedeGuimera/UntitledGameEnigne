@@ -1,59 +1,48 @@
-﻿using OpenTK.Graphics.OpenGL4;
-using OpenTK.Mathematics;
-using OpenTK.Windowing.Common;
-using OpenTK.Windowing.Desktop;
-using UntitledGameEngine.Physics;
+﻿using UntitledGameEngine.Physics;
 using UntitledGameEngine.Rendering;
 
 namespace UntitledGameEngine.Core
 {
-    public class Game : GameWindow
+    public class Game
     {
         public RenderSystem renderSystem = new RenderSystem();
         public CollisionSystem collisionSystem = new CollisionSystem();
 
         public Scene mainScene = new Scene("MainScene");
 
-        public Game(int width, int height, string title) : base(GameWindowSettings.Default, new NativeWindowSettings()
-        {
-            ClientSize = (width, height),
-            Title = title
-        })
-        { }
+        EngineWindow window;
 
-        protected override void OnLoad()
+        public Game(GameSettings gameSettings)
         {
-            base.OnLoad();
+            window = new EngineWindow(this, gameSettings);
+        }
 
+        public void Run()
+        {
+            window.Run();
+        }
+
+        public virtual void Start() 
+        {
             renderSystem.Initialize();
 
             mainScene.Start();
         }
 
-        protected override void OnUpdateFrame(FrameEventArgs args)
+        public virtual void Update(float deltaTime) 
         {
-            base.OnUpdateFrame(args);
-
-            Input.Update(KeyboardState);
-
             collisionSystem.Update();
 
-            mainScene.Update((float)args.Time);
+            mainScene.Update(deltaTime);
         }
 
-        protected override void OnRenderFrame(FrameEventArgs args)
+        public virtual void Render() 
         {
-            base.OnRenderFrame(args);
-
             mainScene.Render(renderSystem);
-
-            SwapBuffers();
         }
 
-        protected override void OnUnload()
+        public virtual void UnLoad()
         {
-            base.OnUnload();
-
             renderSystem.Dispose();
         }
     }
