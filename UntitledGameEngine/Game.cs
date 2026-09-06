@@ -28,6 +28,12 @@ namespace UntitledGameEngine.Core
             renderSystem.Initialize();
             renderSystem.SetViewportSize(window.Size.X, window.Size.Y);
 
+            foreach(var gameObject in mainScene.GetGameObjects())
+            {
+                if(gameObject.GetComponent<Collider>() != null)
+                    collisionSystem.AddCollider(gameObject.GetComponent<Collider>());
+            }
+
             mainScene.Start();
         }
 
@@ -36,6 +42,11 @@ namespace UntitledGameEngine.Core
             collisionSystem.Update();
 
             mainScene.Update(deltaTime);
+        }
+
+        public virtual void FixedUpdate(float fixedDeltaTime)
+        {
+            mainScene.FixedUpdate(fixedDeltaTime);
         }
 
         public virtual void Render() 
