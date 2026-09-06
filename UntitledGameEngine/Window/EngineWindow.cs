@@ -3,7 +3,7 @@ using OpenTK.Windowing.Common;
 using OpenTK.Windowing.Desktop;
 using UntitledGameEngine.Core;
 
-namespace UntitledGameEngine
+namespace UntitledGameEngine.Core
 {
     internal class EngineWindow : GameWindow
     {
