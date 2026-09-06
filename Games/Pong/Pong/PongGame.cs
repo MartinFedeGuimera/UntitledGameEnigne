@@ -17,21 +17,22 @@ namespace Pong
         public override void Start()
         {
             leftPaddle.AddComponent<Renderer>().shape = Shape.Square;
-
             leftPaddle.AddComponent<Collider>().shape = CollisionShape.Square;
+            leftPaddle.AddComponent<KinematicBody>();
 
             leftPaddle.Transform.Position = new Vector2(50, 300);
             leftPaddle.Transform.Scale = new Vector2(25, 100);
 
             rightPaddle.AddComponent<Renderer>().shape = Shape.Square;
-
             rightPaddle.AddComponent<Collider>().shape = CollisionShape.Square;
+            rightPaddle.AddComponent<KinematicBody>();
 
             rightPaddle.Transform.Position = new Vector2(750, 300);
             rightPaddle.Transform.Scale = new Vector2(25, 100);
 
             ball.AddComponent<Renderer>().shape = Shape.Circle;
             ball.AddComponent<Collider>();
+            ball.AddComponent<RigidBody>().useGravity = false;
 
             ball.Transform.Position = new Vector2(400, 300);
             ball.Transform.Scale = new Vector2(25, 25);
@@ -39,6 +40,8 @@ namespace Pong
             mainScene.AddGameObject(ball);
             mainScene.AddGameObject(leftPaddle);
             mainScene.AddGameObject(rightPaddle);
+
+            ball.GetComponent<RigidBody>().velocity = new Vector2(50, 0);
 
             base.Start();
         }
