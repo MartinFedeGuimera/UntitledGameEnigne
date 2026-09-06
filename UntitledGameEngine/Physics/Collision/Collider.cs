@@ -29,6 +29,8 @@ namespace UntitledGameEngine.Physics
                         new Vector2(-0.5f, -0.5f)
                     };
                     break;
+                case CollisionShape.None:
+                    return;
             }
 
             GetVertices();

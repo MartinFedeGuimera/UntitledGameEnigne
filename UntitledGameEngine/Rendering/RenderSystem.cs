@@ -21,12 +21,12 @@ namespace UntitledGameEngine.Rendering
 
         public void Initialize()
         {
+            GL.ClearColor(backgroundColor);
+
             string vertexPath = Path.Combine("Resources", "Shaders", "shader.vert");
             string fragmentPath = Path.Combine("Resources", "Shaders", "shader.frag");
 
             shader = new Shader(vertexPath, fragmentPath);
-
-            GL.ClearColor(backgroundColor);
 
             modelLocation = GL.GetUniformLocation(shader.Handle, "ModelMatrix");
             projectionLocation = GL.GetUniformLocation(shader.Handle, "ProjectionMatrix");
@@ -37,9 +37,7 @@ namespace UntitledGameEngine.Rendering
         }
 
         public void DrawSquare(Vector2 position, Vector2 scale, Color color)
-        {
-            GL.Clear(ClearBufferMask.ColorBufferBit);
-
+        { 
             Matrix4x4 model = Matrix4x4.CreateScale(scale.X, scale.Y, 1) * Matrix4x4.CreateTranslation(position.X, position.Y, 0);
 
             shader.Use();
@@ -57,8 +55,6 @@ namespace UntitledGameEngine.Rendering
 
         public void DrawCircle(Vector2 position, Vector2 scale, Color color)
         {
-            GL.Clear(ClearBufferMask.ColorBufferBit);
-
             Matrix4x4 model = Matrix4x4.CreateScale(scale.X, scale.Y, 1) * Matrix4x4.CreateTranslation(position.X, position.Y, 0);
 
             shader.Use();
@@ -72,6 +68,11 @@ namespace UntitledGameEngine.Rendering
             GL.Uniform4(colorLocation, color);
 
             circle.Draw();
+        }
+
+        public void BeginFrame()
+        {
+            GL.Clear(ClearBufferMask.ColorBufferBit);
         }
 
         public void Dispose()
