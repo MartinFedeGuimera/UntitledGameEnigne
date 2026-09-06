@@ -1,6 +1,7 @@
-﻿using System.Drawing;
+﻿using UntitledGameEngine.Core;
+using System.Drawing;
 
-namespace Pong
+namespace UntitledGameEngine.Rendering
 {
     public enum Shape
     {
@@ -10,7 +11,7 @@ namespace Pong
         Triangle
     }
 
-    internal class Renderer : Component
+    public class Renderer : Component
     {
         public Shape shape = Shape.None;
         public Color color = Color.White;

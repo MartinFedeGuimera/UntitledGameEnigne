@@ -1,15 +1,15 @@
-﻿using OpenTK.Mathematics;
-using static System.Formats.Asn1.AsnWriter;
+﻿using System.Numerics;
+using UntitledGameEngine.Core;
 
-enum CollisionShape
+public enum CollisionShape
 {
     None,
     Square
 }
 
-namespace Pong
+namespace UntitledGameEngine.Physics
 {
-    internal class Collider : Component
+    public class Collider : Component
     {
         private Vector2[] vertices;
         public CollisionShape shape = CollisionShape.None;
@@ -23,10 +23,10 @@ namespace Pong
             {
                 case CollisionShape.Square:
                     vertices = new Vector2[] {
-                        (-0.5f,  0.5f),
-                        (0.5f,  0.5f),
-                        (0.5f, -0.5f),
-                        (-0.5f, -0.5f)
+                        new Vector2(-0.5f,  0.5f),
+                        new Vector2(0.5f,  0.5f),
+                        new Vector2(0.5f, -0.5f),
+                        new Vector2(-0.5f, -0.5f)
                     };
                     break;
             }

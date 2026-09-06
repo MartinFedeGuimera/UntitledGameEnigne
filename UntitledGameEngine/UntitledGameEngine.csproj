@@ -8,17 +8,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Resources\**" />
-    <EmbeddedResource Remove="Resources\**" />
-    <None Remove="Resources\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="OpenTK" Version="4.9.4" />
   </ItemGroup>
-
   <ItemGroup>
-    <ProjectReference Include="..\..\..\UntitledGameEngine\UntitledGameEngine.csproj" />
+    <None Update="Resources\**\*">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Mathematics\" />
   </ItemGroup>
 
 </Project>

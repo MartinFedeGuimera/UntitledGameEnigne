@@ -1,14 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using UntitledGameEngine.Rendering;
 
-namespace Pong
+namespace UntitledGameEngine.Core
 {
-    internal class Scene
+    public class Scene
     {
+        public string Name { get; set; }
+
         private List<GameObject> gameObjects = new List<GameObject>();
+
+        public Scene(string name = "NewScene")
+        {
+            Name = name;
+        }
 
         public void AddGameObject(GameObject gameObject)
         {

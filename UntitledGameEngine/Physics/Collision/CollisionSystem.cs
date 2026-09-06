@@ -1,8 +1,8 @@
-﻿using OpenTK.Mathematics;
+﻿using System.Numerics;
 
-namespace Pong
+namespace UntitledGameEngine.Physics
 {
-    internal class CollisionSystem
+    public class CollisionSystem
     {
         private List<Collider> colliders = new List<Collider>();
 
@@ -18,6 +18,12 @@ namespace Pong
 
         private bool DetectCollisions()
         {
+            if(colliders.Count <= 0)
+            {
+                Console.WriteLine("No Collision Detected!");
+                return false;
+            }
+
             for(int i = 0; i < colliders.Count; i++)
             {
                 Collider a = colliders[i];

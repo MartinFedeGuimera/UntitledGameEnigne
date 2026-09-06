@@ -8,6 +8,8 @@ A simple 2D **Game Engine**, with some Games to show it's features.
 
 - Creating *Scenes* and *GameObject*s.
 - Adding *Components* to these *GameObject*s.
+- Basic shapes rendering.
+- Collision detection.
 
 ---
 
@@ -29,22 +31,22 @@ git clone https://github.com/MartinFedeGuimera/UntitledGameEngine.git
 ---
 
 ## How To Use
-- As **UntitledGameEngine** doesn't have a finished desktop version or neither a way to use it as a library, you can extract the usefull classes and functions of *Pong.sln*  
+You can create a new solution for your game and add a reference to *UntitledGameEnigne.csproj*. Then, create a class that inherits of *Game*, this will be your game. Now, you can add *GameObjects* to your *MainScene* and set them.
 
 ---
 
 ## Contributing
-To learn how to contribute in the project you can read CONTRIBUTING.md file for guidelines on how to get started.
+To learn how to contribute in the project you can read *CONTRIBUTING.md* file for guidelines on how to get started.
 
 ---
 
 ## License
-This project is licensed under the terms specified in LICENSE.md
+This project is licensed under the terms specified in *LICENSE.md*
 
 ---
 
 ## Future Plans
-At the moment of editing this file (07/04/26), the future features to be implemented are:
+At the moment of editing this file (09/05/26), the future features to be implemented are:
 
-- Collision system
 - Physics Engine
+- Scripting

@@ -1,9 +1,8 @@
 ﻿using OpenTK.Graphics.OpenGL4;
-using OpenTK.Mathematics;
 
-namespace Pong
+namespace UntitledGameEngine.Rendering
 {
-    internal class Mesh
+    public class Mesh
     {
         private int VertexArrayObject {  get; set; }
 

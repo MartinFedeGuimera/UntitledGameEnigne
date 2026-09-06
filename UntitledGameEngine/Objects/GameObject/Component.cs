@@ -1,6 +1,8 @@
-﻿namespace Pong
+﻿using UntitledGameEngine.Rendering;
+
+namespace UntitledGameEngine.Core
 {
-    internal abstract class Component
+    public abstract class Component
     {
         public string Name { get; set; }
         public GameObject GameObject {  get; internal set; }

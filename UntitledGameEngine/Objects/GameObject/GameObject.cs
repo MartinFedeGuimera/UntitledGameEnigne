@@ -1,6 +1,8 @@
-﻿namespace Pong
+﻿using UntitledGameEngine.Rendering;
+
+namespace UntitledGameEngine.Core
 {
-    internal class GameObject
+    public class GameObject
     {
         public string Name;
         public Transform Transform;

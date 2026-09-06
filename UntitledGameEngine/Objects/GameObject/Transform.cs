@@ -1,8 +1,8 @@
-﻿using OpenTK.Mathematics;
+﻿using System.Numerics;
 
-namespace Pong
+namespace UntitledGameEngine.Core
 {
-    internal class Transform
+    public class Transform
     {
         private Vector2 position;
         private Vector2 rotation;
