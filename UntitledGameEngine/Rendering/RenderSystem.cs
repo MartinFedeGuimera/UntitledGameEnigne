@@ -85,6 +85,9 @@ namespace UntitledGameEngine.Rendering
 
         public void SetViewportSize(int width, int height)
         {
+            Console.WriteLine($"Width: {width} | Height: {height}");
+
+            GL.Viewport(0, 0, width, height);
             projection = Matrix4x4.CreateOrthographicOffCenter(0, width, height, 0, -1, 1);
         }
     }

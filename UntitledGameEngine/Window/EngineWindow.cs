@@ -1,7 +1,6 @@
 ﻿using OpenTK.Mathematics;
 using OpenTK.Windowing.Common;
 using OpenTK.Windowing.Desktop;
-using UntitledGameEngine.Core;
 
 namespace UntitledGameEngine.Core
 {
@@ -25,6 +24,7 @@ namespace UntitledGameEngine.Core
             base.OnLoad();
 
             game.Start();
+            game.OnFramebufferResize(FramebufferSize.X, FramebufferSize.Y);
         }
 
         protected override void OnUpdateFrame(FrameEventArgs args)

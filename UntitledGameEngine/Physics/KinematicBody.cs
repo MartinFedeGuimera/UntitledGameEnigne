@@ -1,4 +1,5 @@
-﻿using UntitledGameEngine.Core;
+﻿using System.Numerics;
+using UntitledGameEngine.Core;
 
 namespace UntitledGameEngine.Physics
 {
@@ -6,11 +7,22 @@ namespace UntitledGameEngine.Physics
     {
         public override void OnCollide(Collision collision)
         {
-            Collider oppositeCollider = collision.ColliderA == GameObject.GetComponent<Collider>() ? collision.ColliderB : collision.ColliderA;
+            bool isColliderA = collision.ColliderA == GameObject.GetComponent<Collider>();
+
+            Collider oppositeCollider = isColliderA ? collision.ColliderB : collision.ColliderA;
+
+            Vector2 normal = isColliderA ? collision.Normal : -collision.Normal;
 
             if (oppositeCollider.GameObject.GetComponent<StaticBody>() != null)
             {
-                GameObject.Transform.Position += collision.Normal * collision.Penetration;
+                GameObject.Transform.Position -= normal * collision.Penetration;
+
+                float velocityIntoSurface = Vector2.Dot(velocity, normal);
+
+                if(velocityIntoSurface > 0)
+                {
+                    velocity -= normal * velocityIntoSurface;
+                }
             }
         }
 

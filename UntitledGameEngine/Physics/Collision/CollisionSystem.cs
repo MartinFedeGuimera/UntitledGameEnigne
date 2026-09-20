@@ -68,6 +68,8 @@ namespace UntitledGameEngine.Physics
 
             Vector2 collisionNormal = Vector2.Zero;
 
+            Vector2 direction = b.GameObject.Transform.Position - a.GameObject.Transform.Position;
+
             foreach (var normal in normals)
             {
                 aProjection = Proyect(a.GetVertices(), normal);
@@ -84,6 +86,9 @@ namespace UntitledGameEngine.Physics
                 {
                     penetration = overlap;
                     collisionNormal = normal;
+
+                    if (Vector2.Dot(normal, direction) < 0)
+                        collisionNormal = -normal;
                 }
             }
 
@@ -100,7 +105,7 @@ namespace UntitledGameEngine.Physics
             Vector2 bCenter = b.GameObject.Transform.Position;
             float bRadious = b.GameObject.Transform.Scale.X * 0.5f;
 
-            Vector2 difference = aCenter - bCenter;
+            Vector2 difference = bCenter - aCenter;
             float distance = difference.Length();
 
             float totalRadious = aRadious + bRadious;
@@ -149,13 +154,13 @@ namespace UntitledGameEngine.Physics
         {
             Vector2[] normals = new Vector2[a.GetNormals().Length + b.GetNormals().Length];
 
-            for (int k = 0; k < a.GetNormals().Length; k++)
+            for (int i = 0; i < a.GetNormals().Length; i++)
             {
-                normals[k] = a.GetNormals()[k];
+                normals[i] = a.GetNormals()[i];
             }
-            for (int k = 0; k < b.GetNormals().Length; k++)
+            for (int i = 0; i < b.GetNormals().Length; i++)
             {
-                normals[k + a.GetNormals().Length] = b.GetNormals()[k];
+                normals[i + a.GetNormals().Length] = b.GetNormals()[i];
             }
 
             return normals;
