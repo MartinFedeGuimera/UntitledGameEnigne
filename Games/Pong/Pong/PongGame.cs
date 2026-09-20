@@ -38,7 +38,7 @@ namespace Pong
             ball.AddComponent<Renderer>().shape = Shape.Circle;
             ball.AddComponent<Collider>().shape = CollisionShape.Circle;
             ball.AddComponent<RigidBody>().useGravity = false;
-            ball.GetComponent<RigidBody>().velocity = new Vector2(200, 200);
+            ball.AddComponent<BallController>();
 
             ball.Transform.Position = new Vector2(400, 300);
             ball.Transform.Scale = new Vector2(25, 25);
@@ -46,14 +46,14 @@ namespace Pong
             ceiling.AddComponent<Collider>().shape = CollisionShape.Square;
             ceiling.AddComponent<StaticBody>();
 
-            ceiling.Transform.Position = new Vector2(400, 0);
-            ceiling.Transform.Scale = new Vector2(800, 1);
+            ceiling.Transform.Position = new Vector2(400, -5);
+            ceiling.Transform.Scale = new Vector2(800, 10);
 
             floor.AddComponent<Collider>().shape = CollisionShape.Square;
             floor.AddComponent<StaticBody>();
 
-            floor.Transform.Position = new Vector2(400, 600);
-            floor.Transform.Scale = new Vector2(800, 1);
+            floor.Transform.Position = new Vector2(400, 605);
+            floor.Transform.Scale = new Vector2(800, 10);
 
             mainScene.AddGameObject(ball);
             mainScene.AddGameObject(leftPaddle);
