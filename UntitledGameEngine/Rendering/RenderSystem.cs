@@ -23,8 +23,10 @@ namespace UntitledGameEngine.Rendering
         {
             GL.ClearColor(backgroundColor);
 
-            string vertexPath = Path.Combine("Resources", "Shaders", "shader.vert");
-            string fragmentPath = Path.Combine("Resources", "Shaders", "shader.frag");
+            string resourcesPath = Path.Combine(AppContext.BaseDirectory, "Resources", "Shaders");
+
+            string vertexPath = Path.Combine(resourcesPath, "shader.vert");
+            string fragmentPath = Path.Combine(resourcesPath, "shader.frag");
 
             shader = new Shader(vertexPath, fragmentPath);
 
